@@ -15,6 +15,12 @@ document.getElementById('studentFormSubmit').addEventListener('click', () => {
         return;
     }
 
+    const parsedAge = parseInt(age.value);
+    console.log(ragaca);
+    if(!parsedAge) {
+        alert('age must be number');
+        return;
+    }
 
     const student = {
         firstName: firstName.value,
@@ -42,6 +48,13 @@ document.getElementById('subjectFormSubmit').addEventListener('click', () => {
 
     if(code.value === '' || name.value === '' || credit.value === '' || hours.value === '') {
         alert('please fill all fields');
+        return;
+    }
+
+    const parsedCredit = parseInt(credit.value);
+    const parsedHours = parseInt(hours.value);
+    if(!parsedCredit || !parsedHours) {
+        alert('credit and  hours must be number');
         return;
     }
 
