@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body>
+    <section class="mx-auto p-5" style="width: 70%;">
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+
+                <a class="nav-item nav-link active" id="nav-student-tab" data-toggle="tab" href="#nav-student"
+                    role="tab" aria-controls="nav-student" aria-selected="true">student</a>
+
+                <a class="nav-item nav-link" id="nav-subject-tab" data-toggle="tab" href="#nav-subject" role="tab"
+                    aria-controls="nav-subject" aria-selected="false">subject</a>
+
+            </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-student" role="tabpanel" aria-labelledby="nav-student-tab">
+                <div style="margin-top:30px">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <input id="personalId" type="text" name="personalId" class="form-control"
+                                placeholder="personalId">
+                        </div>
+                        <div class="form-group">
+                            <input id="firstName" type="text" name="firstName" class="form-control"
+                                placeholder="firstName">
+                        </div>
+                        <div class="form-group">
+                            <input id="lastNmae" type="text" name="lastNmae" class="form-control"
+                                placeholder="lastNmae">
+                        </div>
+                        <div class="form-group">
+                            <input id="age" type="text" name="age" class="form-control" placeholder="age">
+                        </div>
+                        <button id="addAuthor" class="btn btn-success">create student</button>
+                    </div>
+                </div>
+
+                <hr>
+
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#personalId</th>
+                            <th scope="col">firstName</th>
+                            <th scope="col">lastNmae</th>
+                            <th scope="col">age</th>
+                            <th scope="col">action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>roma</td>
+                            <td>chikhladze</td>
+                            <td>20</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+
+            </div>
+            <div class="tab-pane fade" id="nav-subject" role="tabpanel" aria-labelledby="nav-subject-tab">
+                <div style="margin-top:30px">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <input id="code" type="text" name="code" class="form-control" placeholder="code">
+                        </div>
+                        <div class="form-group">
+                            <input id="name" type="text" name="name" class="form-control" placeholder="name">
+                        </div>
+                        <div class="form-group">
+                            <input id="hours" type="text" name="hours" class="form-control" placeholder="hours">
+                        </div>
+                        <div class="form-group">
+                            <input id="credit" type="text" name="credit" class="form-control" placeholder="credit">
+                        </div>
+                        <button id="addAuthor" class="btn btn-success">create subject</button>
+                    </div>
+                </div>
+
+                <hr>
+
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#code</th>
+                            <th scope="col">name</th>
+                            <th scope="col">hours</th>
+                            <th scope="col">credit</th>
+                            <th scope="col">action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>math</td>
+                            <td>12</td>
+                            <td>5</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <script src="main.js"></script>
+</body>
+
+</html>
