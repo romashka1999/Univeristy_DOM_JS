@@ -58,9 +58,15 @@ export default class University {
           student.personalId = personalId;
           //create new subject object on concrete code property in subjects object
           this.students[personalId] = student;
-          return `student successfully added in students object with personalId: ${personalId} personalId`;
+          return { 
+            message: `student successfully added in students object with personalId: ${personalId} personalId`,
+            statusCode: 200
+          }
       } else {
-          return `student is already exists in students object with personalId: ${personalId} personalId`
+            return { 
+              message: `student is already exists in students object with personalId: ${personalId} personalId`,
+              statusCode: 400
+            }
       }
   }
   
@@ -121,9 +127,15 @@ export default class University {
           subject.code = code;
           //create new subject object on concrete code property in subjects object
           this.subjects[code] = subject;
-          return `subject successfully added in subjects object with code: ${code} code`;
+          return { 
+            message: `subject successfully added in subjects object with code: ${code} code`,
+            statusCode: 200
+          }
       } else {
-          return `subject is already exists in subjects object with code: ${code} code`
+        return { 
+            message: `subject is already exists in subjects object with code: ${code} code`,
+            statusCode: 400
+          }
       }
   }
 

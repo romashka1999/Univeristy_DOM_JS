@@ -20,6 +20,12 @@
 </head>
 
 <body>
+    <style>
+        .btn-danger {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
     <section class="mx-auto p-5" style="width: 70%;">
         <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -32,6 +38,12 @@
 
             </div>
         </nav>
+
+        <br>
+        <div id="createAlert">
+
+        </div>
+
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="nav-student" role="tabpanel" aria-labelledby="nav-student-tab">
                 <div style="margin-top:30px">
@@ -67,14 +79,7 @@
                             <th scope="col">action</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>roma</td>
-                            <td>chikhladze</td>
-                            <td>20</td>
-                            <td></td>
-                        </tr>
+                    <tbody id="studentTable">
                     </tbody>
                 </table>
 
@@ -112,13 +117,7 @@
                             <th scope="col">action</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>math</td>
-                            <td>12</td>
-                            <td>5</td>
-                        </tr>
+                    <tbody id="subjectTable">
                     </tbody>
                 </table>
             </div>

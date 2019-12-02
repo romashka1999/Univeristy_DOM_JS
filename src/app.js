@@ -1,60 +1,119 @@
+import { personalId, firstName, lastName, age, code, name, credit, hours, createAlert, studentTable, subjectTable} from './selectHtmlElements';
 import University from './Univeristy';
 
 const uni = new University();
 
+const validator = (statusCode, response) => {
+    const alertDiv = document.createElement("div");
+    if( statusCode === 200) {
+        alertDiv.classList.add('alert', 'alert-success');
+    } else if( statusCode === 400) {
+        alertDiv.classList.add('alert', 'alert-danger');
+    } else {
+        alertDiv.classList.add('alert', 'alert-warning');
+    }
+    const textNode = document.createTextNode(response);
+    alertDiv.appendChild(textNode);
+    createAlert.innerHTML = '';
+    createAlert.appendChild(alertDiv);
+}
 
-const personalId = document.getElementById('personalId');
-const firstName =  document.getElementById('firstName');
-const lastName = document.getElementById('lastName');
-const age = document.getElementById('age');
+
+const drawStudent = (student) => {
+    const tr = document.createElement('tr');
+    function createTdElement(text) {
+        const td = document.createElement('td');
+        const textNode = document.createTextNode(text);
+        td.appendChild(textNode);
+        tr.appendChild(td);
+    }
+    const th = document.createElement("th");
+    let textNode = document.createTextNode(student.personalId);
+    th.appendChild(textNode);
+    th.setAttribute('scope', 'row');
+    tr.appendChild(th);
+    createTdElement(student.firstName);
+    createTdElement(student.lastName);
+    createTdElement(student.age);
+    const button = document.createElement('button');
+    button.setAttribute('type', 'button');
+    button.classList.add('btn', 'btn-danger');
+    textNode = document.createTextNode('Delete');
+    button.appendChild(textNode);
+    tr.appendChild(button);
+    studentTable.appendChild(tr);
+}
+
+const drawSubject = (subject) => {
+    const tr = document.createElement('tr');
+    function createTdElement(text) {
+        const td = document.createElement('td');
+        const textNode = document.createTextNode(text);
+        td.appendChild(textNode);
+        tr.appendChild(td);
+    }
+    const th = document.createElement("th");
+    let textNode = document.createTextNode(subject.code);
+    th.appendChild(textNode);
+    th.setAttribute('scope', 'row');
+    tr.appendChild(th);
+    createTdElement(subject.name);
+    createTdElement(subject.credit);
+    createTdElement(subject.hours);
+    const button = document.createElement('button');
+    button.setAttribute('type', 'button');
+    button.classList.add('btn', 'btn-danger');
+    textNode = document.createTextNode('Delete');
+    button.appendChild(textNode);
+    tr.appendChild(button);
+    subjectTable.appendChild(tr);
+}
 
 document.getElementById('studentFormSubmit').addEventListener('click', () => {
 
     if(personalId.value === '' || firstName.value === '' || lastName.value === '' || age.value === '') {
-        alert('please fill all fields');
+        validator(300, 'please fill all fields');
         return;
     }
 
     const parsedAge = parseInt(age.value);
-    console.log(ragaca);
     if(!parsedAge) {
-        alert('age must be number');
+        validator(300, 'age must be number');
         return;
     }
 
     const student = {
         firstName: firstName.value,
-        lastname: lastName.value,
+        lastName: lastName.value,
         age: age.value
     };
 
-    console.log( uni.addStudent(personalId.value, student));
-
+    const response = uni.addStudent(personalId.value, student);
+    if(response.statusCode !== 200){
+        return
+    }
+    const studentRes = uni.getStudent(personalId.value);
+    drawStudent(studentRes);
+    console.log('movida');
     personalId.value = '';
     firstName.value = '';
     lastName.value = '';
     age.value = '';
-
-    console.log(uni.getAllStudents());
 });
 
 
-const code = document.getElementById('code');
-const name =  document.getElementById('name');
-const credit = document.getElementById('credit');
-const hours = document.getElementById('hours');
 
 document.getElementById('subjectFormSubmit').addEventListener('click', () => {
 
     if(code.value === '' || name.value === '' || credit.value === '' || hours.value === '') {
-        alert('please fill all fields');
+        validator(300, 'please fill all fields');
         return;
     }
 
     const parsedCredit = parseInt(credit.value);
     const parsedHours = parseInt(hours.value);
     if(!parsedCredit || !parsedHours) {
-        alert('credit and  hours must be number');
+        validator(300, 'credit and  hours must be number');
         return;
     }
 
@@ -64,12 +123,15 @@ document.getElementById('subjectFormSubmit').addEventListener('click', () => {
         hours: hours.value
     };
 
-    console.log( uni.addSubject(code.value, subject));
+    const response = uni.addSubject(code.value, subject);
+    if(response.statusCode !== 200){
+        return
+    }
+    const subjectRes = uni.getSubject(code.value);
+    drawSubject(subjectRes);
 
-    code.value = '';
-    name.value = '';
-    credit.value = '';
-    hours.value = '';
-
-    console.log(uni.getAllsubjects());
+    personalId.value = '';
+    firstName.value = '';
+    lastName.value = '';
+    age.value = '';
 });
