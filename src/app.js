@@ -1,54 +1,62 @@
 import University from './Univeristy';
 
 const uni = new University();
-console.log('object');
-let personalid = document.getElementById('personalId');
-let firstname =  document.getElementById('firstname');
-let lastname = document.getElementById('lastname');
+
+
+const personalId = document.getElementById('personalId');
+const firstName =  document.getElementById('firstName');
+const lastName = document.getElementById('lastName');
+const age = document.getElementById('age');
 
 document.getElementById('studentFormSubmit').addEventListener('click', () => {
 
-    if(personalid.value === '' || firstname.value === '' || lastname.value === '') {
-        alert('Please full in all');
+    if(personalId.value === '' || firstName.value === '' || lastName.value === '' || age.value === '') {
+        alert('please fill all fields');
         return;
     }
 
+
     const student = {
-        firstname: firstname.value,
-        lastname: lastname.value
+        firstName: firstName.value,
+        lastname: lastName.value,
+        age: age.value
     };
 
-    console.log( uni.addStudent(personalid.value, student));
+    console.log( uni.addStudent(personalId.value, student));
 
-    personalid.value = '';
-    firstname.value = '';
-    lastname.value = '';
+    personalId.value = '';
+    firstName.value = '';
+    lastName.value = '';
+    age.value = '';
 
     console.log(uni.getAllStudents());
 });
 
 
-let code = document.getElementById('code');
-let name =  document.getElementById('name');
-let price = document.getElementById('price');
+const code = document.getElementById('code');
+const name =  document.getElementById('name');
+const credit = document.getElementById('credit');
+const hours = document.getElementById('hours');
 
 document.getElementById('subjectFormSubmit').addEventListener('click', () => {
 
-    if(code.value === '' || name.value === '' || price.value === '') {
-        alert('Please full in all');
+    if(code.value === '' || name.value === '' || credit.value === '' || hours.value === '') {
+        alert('please fill all fields');
         return;
     }
 
     const subject = {
         name: name.value,
-        price: price.value
+        credit: credit.value,
+        hours: hours.value
     };
 
     console.log( uni.addSubject(code.value, subject));
 
     code.value = '';
     name.value = '';
-    price.value = '';
+    credit.value = '';
+    hours.value = '';
 
     console.log(uni.getAllsubjects());
 });
