@@ -181,7 +181,7 @@ export default class University {
 
   removeSubject(code){
       //delete subject from subjects object with code
-      if( this.students.hasOwnProperty(code)){
+      if( this.subjects.hasOwnProperty(code)){
           delete this.subjects[code];
           return { 
             message: `successfully deleted subject with code: ${code}`,
