@@ -1,9 +1,41 @@
-import { personalId, firstName, lastName, age, code, name, credit, hours, createAlert, studentTable, subjectTable} from './selectHtmlElements';
+import { personalId, firstName, lastName, age, code, name, credit, hours, createAlert, studentTable, subjectTable, studentSelect, subjectSelect} from './selectHtmlElements';
 import University from './Univeristy';
 import { validator } from './helpers/validator';
 import { drawStudents } from './helpers/drawStudents';
 import { drawSubjects } from './helpers/drawSubjects';
 const uni = new University();
+
+const addOptions = (arr, conf) => {
+    for(let a of arr) {
+        const option = document.createElement('option');
+        if(conf === 'student') {
+            var textNode = document.createTextNode(a.personalId);
+        } else {
+            var textNode = document.createTextNode(a.code);
+        }
+        option.appendChild(textNode);
+        if(conf === 'student') {
+            studentSelect.appendChild(option);
+        } else {
+            subjectSelect.appendChild(option);
+        }
+    }
+}
+document.getElementById('nav-registration-tab').addEventListener('click', () => {
+
+addOptions(uni.getAllStudents(), 'student');
+addOptions(uni.getAllsubjects(), 'subject');
+
+});
+
+document.getElementById('nav-subject-tab').addEventListener('click', () => {
+    studentSelect.innerHTML = '';
+    subjectSelect.innerHTML = '';
+});
+document.getElementById('nav-student-tab').addEventListener('click', () => {
+    studentSelect.innerHTML = '';
+    subjectSelect.innerHTML = '';
+});
 
 
 document.getElementById('studentCreate').addEventListener('click', () => {
@@ -67,4 +99,15 @@ document.getElementById('subjectCreate').addEventListener('click', () => {
     firstName.value = '';
     lastName.value = '';
     age.value = '';
+});
+
+
+document.getElementById('registerStudent').addEventListener('click', () => {
+
+    const studentSelectValue = studentSelect.options[studentSelect.selectedIndex].value;
+    const subjectSelectValue = subjectSelect.options[subjectSelect.selectedIndex].value;
+
+    const response = uni.registerStudentOnSubject(studentSelectValue, subjectSelectValue);
+    validator(response.statusCode, response.message);
+    
 });

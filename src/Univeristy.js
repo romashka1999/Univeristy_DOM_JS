@@ -10,9 +10,15 @@ export default class University {
       if( !this.students[personalId].subjects.includes(this.subjects[code])){
           this.students[personalId].subjects.push(this.subjects[code]);
           this.ubjects[code].students.push(this.students[personalId]);
-          return `student with personalId: ${personalId} was successfully registered on the subject which code is ${code}`;
+          return { 
+            message: `student with personalId: ${personalId} was successfully registered on the subject which code is ${code}`,
+            statusCode: 200
+          }
       } else {
-          return `student is already registered on this subject`;
+        return { 
+            message: `student is already registered on this subject`,
+            statusCode: 400
+          }
       }
   }
 

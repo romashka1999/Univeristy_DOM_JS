@@ -36,6 +36,9 @@
                 <a class="nav-item nav-link" id="nav-subject-tab" data-toggle="tab" href="#nav-subject" role="tab"
                     aria-controls="nav-subject" aria-selected="false">subject</a>
 
+                <a class="nav-item nav-link" id="nav-registration-tab" data-toggle="tab" href="#nav-registration"
+                    role="tab" aria-controls="nav-registration" aria-selected="false">Registration</a>
+
             </div>
         </nav>
 
@@ -45,6 +48,7 @@
         </div>
 
         <div class="tab-content" id="nav-tabContent">
+
             <div class="tab-pane fade show active" id="nav-student" role="tabpanel" aria-labelledby="nav-student-tab">
                 <div style="margin-top:30px">
                     <div class="form-group">
@@ -82,10 +86,8 @@
                     <tbody id="studentTable">
                     </tbody>
                 </table>
-
-
-
             </div>
+
             <div class="tab-pane fade" id="nav-subject" role="tabpanel" aria-labelledby="nav-subject-tab">
                 <div style="margin-top:30px">
                     <div class="form-group">
@@ -120,6 +122,37 @@
                     <tbody id="subjectTable">
                     </tbody>
                 </table>
+            </div>
+
+            <div class="tab-pane fade" id="nav-registration" role="tabpanel" aria-labelledby="nav-registration-tab">
+                <div style="margin-top:30px">
+                    <button id="registerStudent" class="btn btn-success" style="margin-bottom:20px">Register Student</button>
+                    <div class="row">
+                        <div class="form-group col">
+                            <label class="label label-default">Student PersonalId</label>
+                            <select class="form-control form-control-lg" id="studentSelect">
+                            </select>
+                        </div>
+                        <div class="form-group col">
+                            <label class="label label-default">Subject Code</label>
+                            <select class="form-control form-control-lg" id="subjectSelect">
+                            </select>
+                        </div>
+                    </div>
+
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Student personalId</th>
+                                <th scope="col">Subject code</th>
+                            </tr>
+                        </thead>
+                        <tbody id="registrationTable">
+                        </tbody>
+                    </table>
+                </div>
+
+
             </div>
         </div>
     </section>
