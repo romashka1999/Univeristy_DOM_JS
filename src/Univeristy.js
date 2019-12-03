@@ -109,9 +109,15 @@ export default class University {
       //delete student from students object with personalId
       if( this.students.hasOwnProperty(personalId)){
           delete this.students[personalId];
-          return `successfully deleted student with personalId: ${personalId}`;
+          return { 
+            message: `successfully deleted student with personalId: ${personalId}`,
+            statusCode: 200
+          }
       } else {
-          return `student with personalId: ${personalId} is not exist in students object`;
+        return { 
+            message: `student with personalId: ${personalId} is not exist in students object`,
+            statusCode: 400
+          }
       }
   }
 
@@ -177,9 +183,15 @@ export default class University {
       //delete subject from subjects object with code
       if( this.students.hasOwnProperty(code)){
           delete this.subjects[code];
-          return `successfully deleted subject with code: ${code}`;
+          return { 
+            message: `successfully deleted subject with code: ${code}`,
+            statusCode: 200
+          }
       } else {
-          return `subject with code: ${code} is not exist in subjects object`;
+        return { 
+            message: `subject with code: ${code} is not exist in subjects object`,
+            statusCode: 400
+          }
       }
   }
 

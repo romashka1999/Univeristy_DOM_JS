@@ -19,57 +19,84 @@ const validator = (statusCode, response) => {
 }
 
 
-const drawStudent = (student) => {
-    const tr = document.createElement('tr');
-    function createTdElement(text) {
-        const td = document.createElement('td');
-        const textNode = document.createTextNode(text);
-        td.appendChild(textNode);
-        tr.appendChild(td);
+
+const drawStudents = (students) => {
+    let arr = [];
+    for(let student of students) {
+        const tr = document.createElement('tr');
+        function createTdElement(text) {
+            const td = document.createElement('td');
+            const textNode = document.createTextNode(text);
+            td.appendChild(textNode);
+            tr.appendChild(td);
+        }
+        const th = document.createElement("th");
+        let textNode = document.createTextNode(student.personalId);
+        th.appendChild(textNode);
+        th.setAttribute('scope', 'row');
+        tr.appendChild(th);
+        createTdElement(student.firstName);
+        createTdElement(student.lastName);
+        createTdElement(student.age);
+        const button = document.createElement('button');
+        button.setAttribute('type', 'button');
+        button.setAttribute('id', student.personalId);
+        button.addEventListener('click', function () {
+            const response = uni.removeStudent(this.getAttribute('id'));
+            validator(response.statusCode, response.message);
+            drawStudents(uni.getAllStudents());
+        });
+        button.classList.add('btn', 'btn-danger');
+        textNode = document.createTextNode('Delete');
+        button.appendChild(textNode);
+        tr.appendChild(button);
+        arr.push(tr);
     }
-    const th = document.createElement("th");
-    let textNode = document.createTextNode(student.personalId);
-    th.appendChild(textNode);
-    th.setAttribute('scope', 'row');
-    tr.appendChild(th);
-    createTdElement(student.firstName);
-    createTdElement(student.lastName);
-    createTdElement(student.age);
-    const button = document.createElement('button');
-    button.setAttribute('type', 'button');
-    button.classList.add('btn', 'btn-danger');
-    textNode = document.createTextNode('Delete');
-    button.appendChild(textNode);
-    tr.appendChild(button);
-    studentTable.appendChild(tr);
+    studentTable.innerHTML = '';
+    for(let tr of arr) {
+        studentTable.appendChild(tr);
+    }
 }
 
-const drawSubject = (subject) => {
-    const tr = document.createElement('tr');
-    function createTdElement(text) {
-        const td = document.createElement('td');
-        const textNode = document.createTextNode(text);
-        td.appendChild(textNode);
-        tr.appendChild(td);
+const drawSubjects = (subjects) => {
+    let arr = [];
+    for(let subject of subjects) {
+        const tr = document.createElement('tr');
+        function createTdElement(text) {
+            const td = document.createElement('td');
+            const textNode = document.createTextNode(text);
+            td.appendChild(textNode);
+            tr.appendChild(td);
+        }
+        const th = document.createElement("th");
+        let textNode = document.createTextNode(subject.code);
+        th.appendChild(textNode);
+        th.setAttribute('scope', 'row');
+        tr.appendChild(th);
+        createTdElement(subject.name);
+        createTdElement(subject.credit);
+        createTdElement(subject.hours);
+        const button = document.createElement('button');
+        button.setAttribute('type', 'button');
+        button.setAttribute('id', subject.code);
+        button.addEventListener('click', function () {
+            const response = uni.removeSubject(this.getAttribute('id'));
+            validator(response.statusCode, response.message);
+            drawSubjects(uni.getAllsubjects());
+        });
+        button.classList.add('btn', 'btn-danger');
+        textNode = document.createTextNode('Delete');
+        button.appendChild(textNode);
+        tr.appendChild(button);
+        arr.push(tr);
     }
-    const th = document.createElement("th");
-    let textNode = document.createTextNode(subject.code);
-    th.appendChild(textNode);
-    th.setAttribute('scope', 'row');
-    tr.appendChild(th);
-    createTdElement(subject.name);
-    createTdElement(subject.credit);
-    createTdElement(subject.hours);
-    const button = document.createElement('button');
-    button.setAttribute('type', 'button');
-    button.classList.add('btn', 'btn-danger');
-    textNode = document.createTextNode('Delete');
-    button.appendChild(textNode);
-    tr.appendChild(button);
-    subjectTable.appendChild(tr);
+    subjectTable.innerHTML = '';
+    for(let tr of arr) {
+        subjectTable.appendChild(tr);
+    }
 }
 
-document.getElementById('studentFormSubmit').addEventListener('click', () => {
+document.getElementById('studentCreate').addEventListener('click', () => {
 
     if(personalId.value === '' || firstName.value === '' || lastName.value === '' || age.value === '') {
         validator(300, 'please fill all fields');
@@ -89,12 +116,10 @@ document.getElementById('studentFormSubmit').addEventListener('click', () => {
     };
 
     const response = uni.addStudent(personalId.value, student);
-    if(response.statusCode !== 200){
-        return
-    }
-    const studentRes = uni.getStudent(personalId.value);
-    drawStudent(studentRes);
-    console.log('movida');
+    validator(response.statusCode, response.message);
+    const students = uni.getAllStudents();
+    drawStudents(students);
+
     personalId.value = '';
     firstName.value = '';
     lastName.value = '';
@@ -103,7 +128,7 @@ document.getElementById('studentFormSubmit').addEventListener('click', () => {
 
 
 
-document.getElementById('subjectFormSubmit').addEventListener('click', () => {
+document.getElementById('subjectCreate').addEventListener('click', () => {
 
     if(code.value === '' || name.value === '' || credit.value === '' || hours.value === '') {
         validator(300, 'please fill all fields');
@@ -124,11 +149,9 @@ document.getElementById('subjectFormSubmit').addEventListener('click', () => {
     };
 
     const response = uni.addSubject(code.value, subject);
-    if(response.statusCode !== 200){
-        return
-    }
-    const subjectRes = uni.getSubject(code.value);
-    drawSubject(subjectRes);
+    validator(response.statusCode, response.message);
+    const subjects = uni.getAllsubjects();
+    drawSubjects(subjects);
 
     personalId.value = '';
     firstName.value = '';
