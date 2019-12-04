@@ -22,9 +22,12 @@ export const drawSubjects = (uni, subjects) => {
         button.setAttribute('type', 'button');
         button.setAttribute('id', subject.code);
         button.addEventListener('click', function () {
-            const response = uni.removeSubject(this.getAttribute('id'));
-            validator(response.statusCode, response.message);
-            drawSubjects(uni, uni.getAllsubjects());
+            const res =  window.confirm('are you sure ? do you want delete ?', )
+            if(res) {
+                const response = uni.removeSubject(this.getAttribute('id'));
+                validator(response.statusCode, response.message);
+                drawSubjects(uni, uni.getAllsubjects());
+            }
         });
         button.classList.add('btn', 'btn-danger');
         textNode = document.createTextNode('Delete');

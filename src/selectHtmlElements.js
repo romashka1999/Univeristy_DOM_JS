@@ -15,3 +15,8 @@ export const subjectTable = document.getElementById('subjectTable');
 export const studentSelect = document.getElementById('studentSelect');
 export const subjectSelect = document.getElementById('subjectSelect');
 
+export const studentTableSearch = document.getElementById('studentTableSearch');
+export const subjectTableSearch = document.getElementById('subjectTableSearch');
+
+
+

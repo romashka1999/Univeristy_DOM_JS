@@ -159,16 +159,45 @@
 
                     <div class="tab-pane fade show active" id="nav-studentSearch" role="tabpanel"
                         aria-labelledby="nav-studentSearch-tab">
-                        <input class="form-control col" type="text" placeholder="Search student with PersonalId"
+                        <span style="margin-bottom:20px">search all students ,who are registered on the subject</span>
+                        <input class="form-control col" type="text" placeholder="enter subject code"
                             style="margin-bottom:20px">
-                        <button id="searchStudent" class="btn btn-info col" style="margin-bottom:20px">Search</button>
+                        <button id="searchStudents" class="btn btn-info col" style="margin-bottom:20px">Search</button>
+
+
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">#personalId</th>
+                                    <th scope="col">firstName</th>
+                                    <th scope="col">lastName</th>
+                                    <th scope="col">age</th>
+                                </tr>
+                            </thead>
+                            <tbody id="studentTableSearch">
+                            </tbody>
+                        </table>
                     </div>
 
                     <div class="tab-pane fade" id="nav-subjectSearch" role="tabpanel"
                         aria-labelledby="nav-subjectSearch-tab">
-                        <input class="form-control col" type="text" placeholder="Search subject with Code"
+                        <span style="margin-bottom:20px">search all subjects ,where certain student is registered</span>
+                        <input class="form-control col" type="text" placeholder="enter student personalid"
                             style="margin-bottom:20px">
-                        <button id="searchSubject" class="btn btn-info col" style="margin-bottom:20px">Search</button>
+                        <button id="searchSubjects" class="btn btn-info col" style="margin-bottom:20px">Search</button>
+
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">#code</th>
+                                    <th scope="col">name</th>
+                                    <th scope="col">hours</th>
+                                    <th scope="col">credit</th>
+                                </tr>
+                            </thead>
+                            <tbody id="subjectTableSearch">
+                            </tbody>
+                        </table>
                     </div>
 
                 </div>

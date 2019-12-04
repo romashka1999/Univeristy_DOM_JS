@@ -22,9 +22,12 @@ export const drawStudents = (uni, students) => {
         button.setAttribute('type', 'button');
         button.setAttribute('id', student.personalId);
         button.addEventListener('click', function () {
-            const response = uni.removeStudent(this.getAttribute('id'));
-            validator(response.statusCode, response.message);
-            drawStudents(uni, uni.getAllStudents());
+            const res =  window.confirm('are you sure ? do you want delete ?', )
+            if(res) {
+                const response = uni.removeStudent(this.getAttribute('id'));
+                validator(response.statusCode, response.message);
+                drawStudents(uni, uni.getAllStudents());
+            }
         });
         button.classList.add('btn', 'btn-danger');
         textNode = document.createTextNode('Delete');

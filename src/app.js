@@ -1,4 +1,4 @@
-import { personalId, firstName, lastName, age, code, name, credit, hours, createAlert, studentTable, subjectTable, studentSelect, subjectSelect, registerStudent} from './selectHtmlElements';
+import { personalId, firstName, lastName, age, code, name, credit, hours, createAlert, studentTable, subjectTable, studentSelect, subjectSelect, registerStudent, studentTableSearch, subjectTableSearch} from './selectHtmlElements';
 import University from './Univeristy';
 import { validator } from './helpers/validator';
 import { drawStudents } from './helpers/drawStudents';
@@ -22,9 +22,8 @@ const addOptions = (arr, conf) => {
     }
 }
 document.getElementById('nav-registration-tab').addEventListener('click', () => {
-
-addOptions(uni.getAllStudents(), 'student');
-addOptions(uni.getAllsubjects(), 'subject');
+    addOptions(uni.getAllStudents(), 'student');
+    addOptions(uni.getAllsubjects(), 'subject');
 
 });
 
@@ -36,7 +35,6 @@ document.getElementById('nav-student-tab').addEventListener('click', () => {
     studentSelect.innerHTML = '';
     subjectSelect.innerHTML = '';
 });
-
 
 document.getElementById('studentCreate').addEventListener('click', () => {
 
@@ -95,18 +93,24 @@ document.getElementById('subjectCreate').addEventListener('click', () => {
     const subjects = uni.getAllsubjects();
     drawSubjects(uni, subjects);
 
-    personalId.value = '';
-    firstName.value = '';
-    lastName.value = '';
-    age.value = '';
+    code.value = '';
+    name.value = '';
+    credit.value = '';
+    hours.value = '';
 });
 
 
 document.getElementById('registerStudent').addEventListener('click', () => {
     const studentSelectValue = studentSelect.value;
     const subjectSelectValue = subjectSelect.value;
-    console.log(studentSelectValue);
-    console.log(subjectSelectValue);
     const response = uni.registerStudentOnSubject(studentSelectValue, subjectSelectValue);
     validator(response.statusCode, response.message);
+});
+
+document.getElementById('searchStudents').addEventListener('click', () => {
+    
+});
+
+document.getElementById('searchSubjects').addEventListener('click', () => {
+    
 });
