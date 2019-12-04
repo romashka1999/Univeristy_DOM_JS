@@ -126,7 +126,8 @@
 
             <div class="tab-pane fade" id="nav-registration" role="tabpanel" aria-labelledby="nav-registration-tab">
                 <div style="margin-top:30px">
-                    <button id="registerStudent" class="btn btn-success" style="margin-bottom:20px">Register Student</button>
+                    <button id="registerStudent" class="btn btn-success" style="margin-bottom:20px">Register
+                        Student</button>
                     <div class="row">
                         <div class="form-group col">
                             <label class="label label-default">Student PersonalId</label>
@@ -139,17 +140,37 @@
                             </select>
                         </div>
                     </div>
+                </div>
+                <hr>
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link active" id="nav-studentSearch-tab" data-toggle="tab"
+                            href="#nav-studentSearch" role="tab" aria-controls="nav-studentSearch"
+                            aria-selected="true">Student Search</a>
+                        <a class="nav-item nav-link" id="nav-subjectSearch-tab" data-toggle="tab"
+                            href="#nav-subjectSearch" role="tab" aria-controls="nav-subjectSearch"
+                            aria-selected="false">Subject Search</a>
+                    </div>
+                </nav>
 
-                    <table class="table">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th scope="col">Student personalId</th>
-                                <th scope="col">Subject code</th>
-                            </tr>
-                        </thead>
-                        <tbody id="registrationTable">
-                        </tbody>
-                    </table>
+                <br>
+
+                <div class="tab-content" id="nav-tabContent">
+
+                    <div class="tab-pane fade show active" id="nav-studentSearch" role="tabpanel"
+                        aria-labelledby="nav-studentSearch-tab">
+                        <input class="form-control col" type="text" placeholder="Search student with PersonalId"
+                            style="margin-bottom:20px">
+                        <button id="searchStudent" class="btn btn-info col" style="margin-bottom:20px">Search</button>
+                    </div>
+
+                    <div class="tab-pane fade" id="nav-subjectSearch" role="tabpanel"
+                        aria-labelledby="nav-subjectSearch-tab">
+                        <input class="form-control col" type="text" placeholder="Search subject with Code"
+                            style="margin-bottom:20px">
+                        <button id="searchSubject" class="btn btn-info col" style="margin-bottom:20px">Search</button>
+                    </div>
+
                 </div>
 
 
