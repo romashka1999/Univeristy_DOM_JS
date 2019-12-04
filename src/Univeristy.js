@@ -7,9 +7,15 @@ export default class University {
 
   registerStudentOnSubject(personalId, code){
       //regiser concrete student on concrete subject
+      if(!this.students[personalId]||!this.subjects[code]){
+        return { 
+            message: `student or subject does not exist`,
+            statusCode: 400
+          }
+      }
       if( !this.students[personalId].subjects.includes(this.subjects[code])){
           this.students[personalId].subjects.push(this.subjects[code]);
-          this.ubjects[code].students.push(this.students[personalId]);
+          this.subjects[code].students.push(this.students[personalId]);
           return { 
             message: `student with personalId: ${personalId} was successfully registered on the subject which code is ${code}`,
             statusCode: 200

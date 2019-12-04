@@ -1,4 +1,4 @@
-import { personalId, firstName, lastName, age, code, name, credit, hours, createAlert, studentTable, subjectTable, studentSelect, subjectSelect} from './selectHtmlElements';
+import { personalId, firstName, lastName, age, code, name, credit, hours, createAlert, studentTable, subjectTable, studentSelect, subjectSelect, registerStudent} from './selectHtmlElements';
 import University from './Univeristy';
 import { validator } from './helpers/validator';
 import { drawStudents } from './helpers/drawStudents';
@@ -103,11 +103,10 @@ document.getElementById('subjectCreate').addEventListener('click', () => {
 
 
 document.getElementById('registerStudent').addEventListener('click', () => {
-
-    const studentSelectValue = studentSelect.options[studentSelect.selectedIndex].value;
-    const subjectSelectValue = subjectSelect.options[subjectSelect.selectedIndex].value;
-
+    const studentSelectValue = studentSelect.value;
+    const subjectSelectValue = subjectSelect.value;
+    console.log(studentSelectValue);
+    console.log(subjectSelectValue);
     const response = uni.registerStudentOnSubject(studentSelectValue, subjectSelectValue);
     validator(response.statusCode, response.message);
-    
 });
