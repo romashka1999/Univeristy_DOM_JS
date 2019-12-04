@@ -1,4 +1,7 @@
-import { personalId, firstName, lastName, age, code, name, credit, hours, createAlert, studentTable, subjectTable, studentSelect, subjectSelect, registerStudent, studentTableSearch, subjectTableSearch} from './selectHtmlElements';
+import { personalId, firstName, lastName, age, code, name, credit, hours, createAlert, 
+    studentTable, subjectTable, studentSelect, subjectSelect, 
+    registerStudent, studentTableSearch, subjectTableSearch, 
+    studentsInput, subjectsInput } from './selectHtmlElements';
 import University from './Univeristy';
 import { validator } from './helpers/validator';
 import { drawStudents } from './helpers/drawStudents';
@@ -107,10 +110,23 @@ document.getElementById('registerStudent').addEventListener('click', () => {
     validator(response.statusCode, response.message);
 });
 
-document.getElementById('searchStudents').addEventListener('click', () => {
-    
+document.getElementById('searchSubjects').addEventListener('click', () => {
+    if(subjectsInput.value === '') {
+        validator(300, 'please enter personalId before searching');
+        return;
+    }
+    const personalId = subjectsInput.value;
+    const subjects = uni.allRegisteredSubjectsOnStudent(personalId);
+    console.log(subjects);
 });
 
-document.getElementById('searchSubjects').addEventListener('click', () => {
-    
+document.getElementById('searchStudents').addEventListener('click', () => {
+    if(studentsInput.value === '') {
+        validator(300, 'please enter code before searching');
+        return;
+    }
+    const code = studentsInput.value;
+    const students = uni.allRegisteredStudentsOnSubject(code);
+    console.log(students);
+
 });
